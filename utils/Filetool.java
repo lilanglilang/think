@@ -292,11 +292,13 @@ public class Filetool {
 			e.printStackTrace();
 		} finally {
 			// 关闭BufferedReader
-			try {
+		  if(br!=null){
+		  	try {
 				br.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		  }
 		}
 		return data.toString();
 	}
