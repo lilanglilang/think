@@ -30,8 +30,8 @@
         return "";  
     }  
      /*得到uuid*/
-    public static String getUUid(String soap,String rgex){  
-         return  uuid = UUID.randomUUID().toString().replaceAll("-", "");
+    public static String getUUid(){  
+         return  UUID.randomUUID().toString().replaceAll("-", "");
     }  
    
     /** 
