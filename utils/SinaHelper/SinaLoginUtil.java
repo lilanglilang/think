@@ -1,5 +1,3 @@
-package com.inspur.sinaspider;
-
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
