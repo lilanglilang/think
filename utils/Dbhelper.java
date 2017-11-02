@@ -49,17 +49,27 @@ public class Dbhelper {
 		}//初始化
 	}
 	/**
-	 * 数据库查询用的操作
-	 */
-	public void excuteSearch(){
+	     * 数据库查询用的操作 自定义接收实体对象
+	     */
+       public List<Book> excuteSearch(){
+		List<Book> lists=new ArrayList<>();
+		Book book=new Book();
 		try {
-			pre.executeQuery();
+		    ResultSet resultSet=pre.executeQuery();
+		    while (resultSet.next()){
+			book.setId(Integer.parseInt(resultSet.getString("id")));
+			book.setName(resultSet.getString("name"));
+			book.setDesc(resultSet.getString("description"));
+			book.setImg(resultSet.getString("pic"));
+			book.setPrice(resultSet.getString("price"));
+			lists.add(book);
+		    }
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
 		}
-		return;
-	}
+		return lists;
+	    }
 	/**
 	 * 数据库插入操作,更新使用该操作方法
 	 */
