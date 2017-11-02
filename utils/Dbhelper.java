@@ -53,10 +53,11 @@ public class Dbhelper {
 	     */
        public List<Book> excuteSearch(){
 		List<Book> lists=new ArrayList<>();
-		Book book=new Book();
+		Book book;
 		try {
 		    ResultSet resultSet=pre.executeQuery();
 		    while (resultSet.next()){
+		        book=new Book();
 			book.setId(Integer.parseInt(resultSet.getString("id")));
 			book.setName(resultSet.getString("name"));
 			book.setDesc(resultSet.getString("description"));
