@@ -69,4 +69,54 @@ public class CalendarDemo {
 		}
 		return list;
 	}
+	
+	private static String[] getLast12Months(String time) {
+		// 处理月份输入条件
+		if (time.length() == 7) {
+			time = time + "-01 00:00:00";
+		} else {
+			time = time.substring(0, 7) + "-01 00:00:00";
+		}
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		try {
+			date = sdf.parse(time);
+		} catch (Exception e) {
+			return null;
+		}
+
+		String[] last12Months = new String[12];
+		Calendar cal = Calendar.getInstance();
+		// 设置输入条件时间
+		cal.setTime(date);
+		cal.set(Calendar.MONTH, cal.get(Calendar.MONTH) + 1); // 要先+1,才能把本月的算进去
+
+		for (int i = 0; i < 12; i++) {
+			if("00".equals(addZeroForNum(String.valueOf(cal.get(Calendar.MONTH)), 2))){
+				    cal.set(Calendar.MONTH, cal.get(Calendar.MONTH) - 1); // 逐次往前推1个月
+				    //不会返回12
+					last12Months[11 - i] = cal.get(Calendar.YEAR) + "-"
+						+ addZeroForNum("12", 2);
+
+			}else{
+				last12Months[11 - i] = cal.get(Calendar.YEAR) + "-"
+						+ addZeroForNum(String.valueOf(cal.get(Calendar.MONTH)), 2);
+				cal.set(Calendar.MONTH, cal.get(Calendar.MONTH) - 1); // 逐次往前推1个月
+			}
+		}
+
+		return last12Months;
+	}
+	private static String addZeroForNum(String str, int strLength) {
+		int strLen = str.length();
+		if (strLen < strLength) {
+			while (strLen < strLength) {
+				StringBuffer sb = new StringBuffer();
+				sb.append("0").append(str);// 左补0
+				str = sb.toString();
+				strLen = str.length();
+			}
+		}
+		return str;
+	}
 }
