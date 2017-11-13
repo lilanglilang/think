@@ -119,4 +119,12 @@ public class CalendarDemo {
 		}
 		return str;
 	}
+		/**
+	 * 
+	 * @return 数据格式:2014-14-19 12:30:30  
+	 */
+	public static String getCurrentDateTime(){
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return dateFormat.format(new Date());
+	}
 }
